@@ -1,130 +1,179 @@
 "use client";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import HeroSection from './components/HeroSection';
+import FeatureCard from './components/FeatureCard';
 
 export default function Home() {
   return (
-    <div className="min-h-screen p-8 pb-20">
-      <main className="max-w-4xl mx-auto space-y-16">
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="space-y-8"
-        >
-          <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 text-center mb-12 tracking-tight">
-            Discover the 
-            <span className="block mt-2 bg-gradient-to-r from-blue-300 via-purple-300 to-blue-300 bg-clip-text">
-              Metaverse World
-            </span>
-          </h1>
-          
-          <motion.section 
-            initial={{ opacity: 0, y: 50 }}
+    <div className="min-h-screen">
+      <HeroSection />
+      
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 py-20">
+        {/* Features Section */}
+        <section className="text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white/10 p-6 rounded-lg backdrop-blur-sm"
+            transition={{ duration: 0.6 }}
+            className="mb-16"
           >
-            <h2 className="text-2xl font-bold text-blue-300 mb-4">What is Metaverse?</h2>
-            <p className="text-white/90 leading-relaxed mb-4">
-              The Metaverse is the next evolution of the internet - a three-dimensional, immersive digital 
-              environment that combines virtual reality (VR), augmented reality (AR), and the internet into 
-              a single, connected digital space.
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Explore <span className="cyber-text">Infinite Possibilities</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Discover cutting-edge technologies that power the next generation of digital experiences
             </p>
-          </motion.section>
+          </motion.div>
 
-          <motion.section 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-white/10 p-6 rounded-lg backdrop-blur-sm"
-          >
-            <h2 className="text-2xl font-bold text-blue-300 mb-4">Key Features of Metaverse</h2>
-            <ul className="text-white/90 space-y-3 list-disc pl-6">
-              <li>Continuity and persistence - the world exists continuously</li>
-              <li>Synchronicity - events happen in real-time</li>
-              <li>Unlimited number of users</li>
-              <li>Functional economy system</li>
-              <li>Bridging virtual and physical worlds</li>
-              <li>Full interoperability of data and digital assets</li>
-            </ul>
-          </motion.section>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <FeatureCard
+              title="Virtual Reality"
+              description="Immerse yourself in photorealistic 3D environments with haptic feedback and spatial audio"
+              icon={
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v-.07zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+              }
+              delay={0.1}
+              gradient="from-blue-500 to-cyan-500"
+            />
+            
+            <FeatureCard
+              title="AI Agents"
+              description="Intelligent virtual beings that learn, adapt, and interact naturally in digital spaces"
+              icon={
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-1.82.62-3.49 1.64-4.83L9 11.5v.5c0 .83.67 1.5 1.5 1.5S12 12.83 12 12V9.5c0-.83-.67-1.5-1.5-1.5S9 8.67 9 9.5v.5l-3.36-4.33C7.01 4.62 8.82 4 12 4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/>
+                </svg>
+              }
+              delay={0.2}
+              gradient="from-purple-500 to-pink-500"
+            />
+            
+            <FeatureCard
+              title="Digital Assets"
+              description="Own, trade, and create unique digital items with blockchain-verified authenticity"
+              icon={
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              }
+              delay={0.3}
+              gradient="from-green-500 to-emerald-500"
+            />
+            
+            <FeatureCard
+              title="Social Spaces"
+              description="Connect with people worldwide in shared virtual environments and experiences"
+              icon={
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H16c-.8 0-1.54.37-2 1l-3 4v7h2v-5l1.5-2L16 18h4zM12.5 11.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5S11 9.17 11 10s.67 1.5 1.5 1.5zM5.5 6c1.11 0 2-.89 2-2s-.89-2-2-2-2 .89-2 2 .89 2 2 2zm2 16v-7H9V9c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v6h1.5v7h4z"/>
+                </svg>
+              }
+              delay={0.4}
+              gradient="from-orange-500 to-red-500"
+            />
+          </div>
+        </section>
 
-          <motion.section 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="bg-white/10 p-6 rounded-lg backdrop-blur-sm"
-          >
-            <h2 className="text-2xl font-bold text-blue-300 mb-4">Metaverse Applications</h2>
-            <div className="grid md:grid-cols-2 gap-4 text-white/90">
-              <div className="p-4 bg-white/5 rounded">
-                <h3 className="font-semibold mb-2">Entertainment</h3>
-                <p>Games, concerts, social and cultural events in virtual space</p>
-              </div>
-              <div className="p-4 bg-white/5 rounded">
-                <h3 className="font-semibold mb-2">Education</h3>
-                <p>Interactive classes, virtual laboratories, and simulations</p>
-              </div>
-              <div className="p-4 bg-white/5 rounded">
-                <h3 className="font-semibold mb-2">Business</h3>
-                <p>Virtual meetings, conferences, and coworking spaces</p>
-              </div>
-              <div className="p-4 bg-white/5 rounded">
-                <h3 className="font-semibold mb-2">Commerce</h3>
-                <p>Virtual stores and galleries with digital goods</p>
-              </div>
-            </div>
-          </motion.section>
-        </motion.div>
-
+        {/* Latest News Section */}
         <motion.section 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="bg-white/10 p-6 rounded-lg backdrop-blur-sm"
+          transition={{ duration: 0.6 }}
+          className="text-center"
         >
-          <h2 className="text-2xl font-bold text-blue-300 mb-4">Latest News</h2>
-          <div className="grid gap-4">
-            <div className="border border-blue-500/20 p-4 rounded">
-              <span className="text-blue-300 text-sm">March 15, 2024</span>
-              <h3 className="text-white font-semibold mt-1">New Virtual Reality Breakthrough</h3>
-              <p className="text-white/70">Latest developments in VR technology promise more immersive experiences.</p>
+          <h2 className="text-4xl font-bold text-white mb-12">
+            Latest <span className="cyber-text">Innovations</span>
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="glass-morphism p-6 rounded-xl hover:bg-white/15 transition-all duration-300 group">
+              <div className="w-full h-48 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg mb-4 flex items-center justify-center">
+                <svg className="w-16 h-16 text-cyan-400 group-hover:animate-float" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v-.07zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+              </div>
+              <span className="text-cyan-300 text-sm font-medium">December 2024</span>
+              <h3 className="text-white font-bold text-xl mt-2 mb-3">Neural Interface Integration</h3>
+              <p className="text-gray-300">Revolutionary brain-computer interfaces enable direct thought control in virtual environments.</p>
             </div>
-            <div className="border border-blue-500/20 p-4 rounded">
-              <span className="text-blue-300 text-sm">March 10, 2024</span>
-              <h3 className="text-white font-semibold mt-1">Metaverse Education Platform Launch</h3>
-              <p className="text-white/70">Revolutionary new platform for virtual learning experiences.</p>
+            
+            <div className="glass-morphism p-6 rounded-xl hover:bg-white/15 transition-all duration-300 group">
+              <div className="w-full h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg mb-4 flex items-center justify-center">
+                <svg className="w-16 h-16 text-purple-400 group-hover:animate-float" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-1.82.62-3.49 1.64-4.83L9 11.5v.5c0 .83.67 1.5 1.5 1.5S12 12.83 12 12V9.5c0-.83-.67-1.5-1.5-1.5S9 8.67 9 9.5v.5l-3.36-4.33C7.01 4.62 8.82 4 12 4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/>
+                </svg>
+              </div>
+              <span className="text-purple-300 text-sm font-medium">November 2024</span>
+              <h3 className="text-white font-bold text-xl mt-2 mb-3">AI Consciousness Breakthrough</h3>
+              <p className="text-gray-300">Advanced AI entities demonstrate self-awareness and emotional intelligence in virtual spaces.</p>
+            </div>
+            
+            <div className="glass-morphism p-6 rounded-xl hover:bg-white/15 transition-all duration-300 group">
+              <div className="w-full h-48 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-lg mb-4 flex items-center justify-center">
+                <svg className="w-16 h-16 text-green-400 group-hover:animate-float" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <span className="text-green-300 text-sm font-medium">October 2024</span>
+              <h3 className="text-white font-bold text-xl mt-2 mb-3">Quantum Computing Integration</h3>
+              <p className="text-gray-300">Quantum processors enable real-time physics simulation for unlimited virtual worlds.</p>
             </div>
           </div>
         </motion.section>
 
+        {/* Experience Gallery */}
         <motion.section 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4"
+          transition={{ duration: 0.6 }}
+          className="text-center"
         >
-          <div className="relative h-64 group overflow-hidden rounded-lg">
-            <div className="absolute inset-0 bg-blue-900/50 flex items-center justify-center">
-              <p className="text-white font-semibold">Virtual Worlds</p>
-            </div>
-          </div>
-          <div className="relative h-64 group overflow-hidden rounded-lg">
-            <div className="absolute inset-0 bg-purple-900/50 flex items-center justify-center">
-              <p className="text-white font-semibold">Digital Art</p>
-            </div>
-          </div>
-          <div className="relative h-64 group overflow-hidden rounded-lg">
-            <div className="absolute inset-0 bg-blue-800/50 flex items-center justify-center">
-              <p className="text-white font-semibold">Social Spaces</p>
-            </div>
+          <h2 className="text-4xl font-bold text-white mb-12">
+            Experience <span className="cyber-text">Virtual Worlds</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <motion.div 
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              className="relative h-80 group overflow-hidden rounded-xl glass-morphism"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 flex flex-col items-center justify-center p-6">
+                <svg className="w-16 h-16 text-cyan-400 mb-4 group-hover:animate-float" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v-.07zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                <h3 className="text-white font-bold text-xl mb-2">Cosmic Realms</h3>
+                <p className="text-gray-300 text-center">Explore infinite galaxies and discover alien civilizations</p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              className="relative h-80 group overflow-hidden rounded-xl glass-morphism"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 to-pink-500/30 flex flex-col items-center justify-center p-6">
+                <svg className="w-16 h-16 text-purple-400 mb-4 group-hover:animate-float" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                <h3 className="text-white font-bold text-xl mb-2">Digital Art Studios</h3>
+                <p className="text-gray-300 text-center">Create and showcase immersive 3D masterpieces</p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              className="relative h-80 group overflow-hidden rounded-xl glass-morphism"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/30 to-emerald-500/30 flex flex-col items-center justify-center p-6">
+                <svg className="w-16 h-16 text-green-400 mb-4 group-hover:animate-float" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H16c-.8 0-1.54.37-2 1l-3 4v7h2v-5l1.5-2L16 18h4zM12.5 11.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5S11 9.17 11 10s.67 1.5 1.5 1.5zM5.5 6c1.11 0 2-.89 2-2s-.89-2-2-2-2 .89-2 2 .89 2 2 2zm2 16v-7H9V9c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v6h1.5v7h4z"/>
+                </svg>
+                <h3 className="text-white font-bold text-xl mb-2">Social Hubs</h3>
+                <p className="text-gray-300 text-center">Connect with friends in vibrant virtual communities</p>
+              </div>
+            </motion.div>
           </div>
         </motion.section>
 
@@ -139,7 +188,7 @@ export default function Home() {
           <div className="space-y-4">
             <details className="bg-white/10 p-4 rounded-lg">
               <summary className="text-white font-semibold cursor-pointer">What equipment do I need for Metaverse?</summary>
-              <p className="mt-2 text-white/80">To fully experience the Metaverse, you'll need a VR headset, a high-speed internet connection, and a compatible device or computer.</p>
+              <p className="mt-2 text-white/80">To fully experience the Metaverse, you&apos;ll need a VR headset, a high-speed internet connection, and a compatible device or computer.</p>
             </details>
             <details className="bg-white/10 p-4 rounded-lg">
               <summary className="text-white font-semibold cursor-pointer">Is Metaverse safe?</summary>
@@ -272,20 +321,39 @@ export default function Home() {
           </div>
         </motion.section>
 
-        <motion.div 
+        {/* Call to Action */}
+        <motion.section
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center"
+          transition={{ duration: 0.6 }}
+          className="text-center glass-morphism p-12 rounded-xl"
         >
-          <a 
-            href="/agents" 
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
-          >
-            Learn More About AI Agents in Metaverse
-          </a>
-        </motion.div>
+          <h2 className="text-3xl font-bold text-white mb-6">
+            Ready to Enter the <span className="cyber-text">Metaverse</span>?
+          </h2>
+          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+            Join millions of users exploring infinite possibilities in our revolutionary digital universe. 
+            Your journey into the future starts here.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 animate-glow"
+            >
+              Start Your Journey
+            </motion.button>
+            <motion.a
+              href="/agents"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="glass-morphism text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition-all duration-300 border border-cyan-500/50"
+            >
+              Meet Our AI Agents
+            </motion.a>
+          </div>
+        </motion.section>
       </main>
     </div>
   );

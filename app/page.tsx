@@ -321,6 +321,96 @@ export default function Home() {
           </div>
         </motion.section>
 
+        {/* Shop Preview */}
+        <motion.section
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          <h2 className="text-4xl font-bold text-white mb-12">
+            <span className="cyber-text">MetaVerse Store</span>
+          </h2>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="text-left">
+              <h3 className="text-2xl font-bold text-white mb-4">Exclusive MetaVerse Merchandise</h3>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                Wear the future with our premium MetaVerse Hub t-shirt. Featuring holographic logo print 
+                and made from 100% premium cotton. Perfect for digital pioneers and tech enthusiasts.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center text-gray-300">
+                  <svg className="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  Premium 100% Cotton
+                </div>
+                <div className="flex items-center text-gray-300">
+                  <svg className="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  Holographic Logo Print
+                </div>
+                <div className="flex items-center text-gray-300">
+                  <svg className="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  Free Worldwide Shipping
+                </div>
+                <div className="flex items-center text-gray-300">
+                  <svg className="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  Limited Edition
+                </div>
+              </div>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="text-3xl font-bold text-cyan-400">$29.99</span>
+                <span className="text-xl text-gray-400 line-through">$39.99</span>
+                <span className="bg-red-500 text-white px-2 py-1 rounded-full text-sm font-bold">25% OFF</span>
+              </div>
+              <motion.a
+                href="/shop"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 animate-glow"
+              >
+                Shop Now
+              </motion.a>
+            </div>
+            
+            <div className="relative">
+              <motion.div
+                whileHover={{ scale: 1.05, rotateY: 5 }}
+                className="glass-morphism p-8 rounded-xl"
+              >
+                <div className="w-full h-80 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-lg flex items-center justify-center mb-4">
+                  <svg width="200" height="200" viewBox="0 0 400 400" className="animate-hologram">
+                    <path d="M100 120 L100 100 Q100 80 120 80 L140 80 Q160 60 240 60 Q320 60 340 80 L360 80 Q380 80 380 100 L380 120 L360 140 L360 380 Q360 390 350 390 L50 390 Q40 390 40 380 L40 140 Z" fill="#1a1a1a" stroke="#00ffff" strokeWidth="2"/>
+                    <rect x="120" y="140" width="160" height="80" fill="#00ffff" opacity="0.2" rx="10"/>
+                    <text x="200" y="170" textAnchor="middle" fill="#00ffff" fontFamily="Arial, sans-serif" fontSize="18" fontWeight="bold">METAVERSE</text>
+                    <text x="200" y="195" textAnchor="middle" fill="#00ffff" fontFamily="Arial, sans-serif" fontSize="14">HUB</text>
+                  </svg>
+                </div>
+                <div className="text-center">
+                  <h4 className="text-white font-bold text-lg mb-2">MetaVerse Hub T-Shirt</h4>
+                  <div className="flex justify-center items-center gap-2">
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                      ))}
+                    </div>
+                    <span className="text-gray-300 text-sm">(127 reviews)</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
+
         {/* Call to Action */}
         <motion.section
           initial={{ opacity: 0, y: 50 }}

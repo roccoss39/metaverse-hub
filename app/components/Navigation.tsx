@@ -52,6 +52,12 @@ export default function Navigation() {
               >
                 AI Agents
               </Link>
+              <Link 
+                href="/shop" 
+                className="text-white hover:text-cyan-300 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-white/10"
+              >
+                Shop
+              </Link>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -109,6 +115,13 @@ export default function Navigation() {
               onClick={() => setIsOpen(false)}
             >
               AI Agents
+            </Link>
+            <Link 
+              href="/shop" 
+              className="text-white hover:text-cyan-300 block px-3 py-2 rounded-md text-base font-medium"
+              onClick={() => setIsOpen(false)}
+            >
+              Shop
             </Link>
             <button className="w-full text-left bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-2 rounded-md text-base font-medium">
               Enter Metaverse

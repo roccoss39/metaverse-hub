@@ -76,6 +76,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/shop" className="text-gray-300 hover:text-cyan-400 transition-colors">
+                  Shop
+                </Link>
+              </li>
+              <li>
                 <a href="#" className="text-gray-300 hover:text-cyan-400 transition-colors">
                   Virtual Worlds
                 </a>

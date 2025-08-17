@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import BlikPayment from './BlikPayment';
+import P24Payment from './P24Payment';
 
 interface CartItem {
   cartId: string;
@@ -41,6 +42,7 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
   const [orderNumber, setOrderNumber] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [showBlikPayment, setShowBlikPayment] = useState(false);
+  const [showP24Payment, setShowP24Payment] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -52,6 +54,11 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
     
     if (paymentMethod === 'blik') {
       setShowBlikPayment(true);
+      return;
+    }
+
+    if (paymentMethod === 'p24') {
+      setShowP24Payment(true);
       return;
     }
 
@@ -75,6 +82,17 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
 
   const handleBlikCancel = () => {
     setShowBlikPayment(false);
+  };
+
+  const handleP24Success = (sessionId: string) => {
+    const orderNum = 'MV' + sessionId.split('_')[1] || Math.random().toString(36).substr(2, 9).toUpperCase();
+    setOrderNumber(orderNum);
+    setOrderComplete(true);
+    setShowP24Payment(false);
+  };
+
+  const handleP24Cancel = () => {
+    setShowP24Payment(false);
   };
 
   if (orderComplete) {
@@ -243,7 +261,7 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
         {/* Payment Method Selection */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-4">Payment Method</h3>
-          <div className="grid grid-cols-2 gap-3 mb-4">
+          <div className="grid grid-cols-3 gap-3 mb-4">
             <button
               type="button"
               onClick={() => setPaymentMethod('card')}
@@ -258,7 +276,7 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
                   <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>
                 </svg>
               </div>
-              <span className="text-white font-medium">Credit Card</span>
+              <span className="text-white font-medium text-sm">Credit Card</span>
             </button>
 
             <button
@@ -275,7 +293,24 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
                   <span className="text-white font-bold text-xs">BLIK</span>
                 </div>
               </div>
-              <span className="text-white font-medium">BLIK</span>
+              <span className="text-white font-medium text-sm">BLIK</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setPaymentMethod('p24')}
+              className={`p-4 rounded-lg border-2 transition-all duration-300 ${
+                paymentMethod === 'p24'
+                  ? 'border-orange-500 bg-orange-500/20'
+                  : 'border-gray-600 bg-white/5 hover:bg-white/10'
+              }`}
+            >
+              <div className="flex items-center justify-center mb-2">
+                <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded flex items-center justify-center">
+                  <span className="text-white font-bold text-xs">P24</span>
+                </div>
+              </div>
+              <span className="text-white font-medium text-sm">Przelewy24</span>
             </button>
           </div>
         </div>
@@ -348,6 +383,35 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
           </div>
         )}
 
+        {/* Przelewy24 Information */}
+        {paymentMethod === 'p24' && (
+          <div className="glass-morphism p-4 rounded-lg">
+            <div className="flex items-center mb-3">
+              <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded flex items-center justify-center mr-3">
+                <span className="text-white font-bold text-xs">P24</span>
+              </div>
+              <h4 className="text-white font-semibold">Przelewy24 Payment</h4>
+            </div>
+            <p className="text-gray-300 text-sm mb-3">
+              You will be redirected to Przelewy24 secure payment gateway. Choose from multiple payment methods including BLIK, cards, and bank transfers.
+            </p>
+            <div className="space-y-2">
+              <div className="flex items-center text-green-400 text-sm">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Licensed by KNF (Polish Financial Supervision Authority)
+              </div>
+              <div className="flex items-center text-green-400 text-sm">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                BLIK, Cards, Bank Transfers available
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Order Summary */}
         <div className="glass-morphism p-4 rounded-lg">
           <h3 className="text-lg font-semibold text-white mb-3">Order Summary</h3>
@@ -377,10 +441,12 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
           className={`w-full py-4 rounded-lg font-semibold transition-all duration-300 animate-glow ${
             paymentMethod === 'blik'
               ? 'bg-gradient-to-r from-red-500 to-pink-600 text-white hover:from-red-400 hover:to-pink-500'
+              : paymentMethod === 'p24'
+              ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-400 hover:to-red-500'
               : 'bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-400 hover:to-emerald-500'
           }`}
         >
-          {paymentMethod === 'blik' ? 'Pay with BLIK' : 'Pay with Card'} - ${totalPrice.toFixed(2)}
+          {paymentMethod === 'blik' ? 'Pay with BLIK' : paymentMethod === 'p24' ? 'Pay with Przelewy24' : 'Pay with Card'} - ${totalPrice.toFixed(2)}
         </motion.button>
 
         {/* Security Notice */}
@@ -398,6 +464,17 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
           amount={totalPrice}
           onSuccess={handleBlikSuccess}
           onCancel={handleBlikCancel}
+        />
+      )}
+
+      {/* Przelewy24 Payment Modal */}
+      {showP24Payment && (
+        <P24Payment
+          amount={totalPrice}
+          email={formData.email}
+          description={`MetaVerse Hub Order - ${items.map(item => item.name).join(', ')}`}
+          onSuccess={handleP24Success}
+          onCancel={handleP24Cancel}
         />
       )}
     </form>

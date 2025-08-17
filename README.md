@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌐 MetaVerse Hub - Professional E-commerce Store
 
-## Getting Started
+A cutting-edge e-commerce platform built with Next.js, featuring cyber/metaverse aesthetics and multiple payment methods including Polish BLIK integration.
 
-First, run the development server:
+## ✨ Features
 
+### 🛒 **E-commerce Functionality**
+- Professional product catalog
+- Shopping cart with real-time updates
+- Complete checkout process
+- Order confirmation system
+
+### 💳 **Payment Methods**
+- **Credit Card** - Traditional card payments (demo)
+- **BLIK** - Polish mobile payment simulation
+- **Przelewy24** - Full P24 integration simulation
+
+### 🎨 **Design & UX**
+- Cyber/Metaverse themed design
+- Glass morphism effects
+- Smooth animations with Framer Motion
+- Fully responsive design
+- Dark theme with neon accents
+
+### 🔧 **Technical Stack**
+- **Next.js 15** - React framework
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Framer Motion** - Animations
+- **Przelewy24 API** - Payment integration
+
+## 🚀 Getting Started
+
+1. **Clone and install:**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/metaverse-hub.git
+cd metaverse-hub
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Set up environment:**
+```bash
+cp .env.example .env.local
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Run development server:**
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. **Open browser:**
+```
+http://localhost:3000
+```
 
-## Learn More
+## 🎯 Demo Features
 
-To learn more about Next.js, take a look at the following resources:
+### Test the Store
+- 🛒 Browse products at `/shop`
+- 👕 Add MetaVerse Hub T-Shirt to cart
+- 💳 Test 3 payment methods:
+  - Credit Card (demo)
+  - BLIK (enter any 6 digits)
+  - Przelewy24 (full simulation)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+⚠️ **All payments are in DEMO MODE** - no real money processed!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🌐 Deployment Options
 
-## Deploy on Vercel
+### Option 1: Vercel (Recommended)
+1. Push to GitHub
+2. Visit [vercel.com](https://vercel.com)
+3. Import repository
+4. Deploy automatically
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Option 2: GitHub Pages
+1. Enable static export in `next.config.ts`
+2. Run `npm run build && npm run export`
+3. Deploy to GitHub Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔒 Security
+- ✅ Demo/Sandbox mode only
+- ✅ No real payments processed
+- ✅ Environment variables secured
+- ✅ Safe for public deployment
+
+## 📞 Contact
+Built with ❤️ using Next.js, TypeScript, and Tailwind CSS
+
+---
+⭐ **Star this repository if you found it helpful!**

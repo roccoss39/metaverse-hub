@@ -1,12 +1,14 @@
 {
-  "name": "my-next-app",
-  "version": "0.1.0",
+  "name": "metaverse-hub",
+  "version": "1.0.0",
+  "description": "Professional e-commerce store with cyber/metaverse aesthetics and Polish payment integration",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
     "framer-motion": "^12.4.3",
@@ -24,5 +26,22 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  }
+  },
+  "keywords": [
+    "nextjs",
+    "ecommerce",
+    "metaverse",
+    "blik",
+    "przelewy24",
+    "typescript",
+    "tailwindcss",
+    "framer-motion"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/metaverse-hub.git"
+  },
+  "homepage": "https://yourusername.github.io/metaverse-hub"
 }

@@ -8,6 +8,7 @@
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.4.3-0055FF?style=for-the-badge&logo=framer)
 
 A cutting-edge e-commerce platform built with Next.js, featuring cyber/metaverse aesthetics and multiple payment methods including Polish BLIK integration.
+See https://metaverse-hub.vercel.app/ for preview.
 
 ## ✨ Features
 

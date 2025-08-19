@@ -30,8 +30,8 @@ const products = [
   {
     id: 1,
     name: "MetaVerse Hub T-Shirt",
-    price: 29.99,
-    originalPrice: 39.99,
+    price: 0.99,
+    originalPrice: 34.99,
     description: "Premium quality cotton t-shirt with holographic MetaVerse Hub logo. Perfect for digital pioneers and tech enthusiasts.",
     image: "/tshirt-mockup.svg",
     sizes: ["S", "M", "L", "XL", "XXL"],

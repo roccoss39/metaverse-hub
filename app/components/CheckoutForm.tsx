@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import BlikPayment from './BlikPayment';
 import P24Payment from './P24Payment';
+import PayPalPayment from './PayPalPayment';
 
 interface CartItem {
   cartId: string;
@@ -43,6 +44,7 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [showBlikPayment, setShowBlikPayment] = useState(false);
   const [showP24Payment, setShowP24Payment] = useState(false);
+  const [showPayPalPayment, setShowPayPalPayment] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -59,6 +61,11 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
 
     if (paymentMethod === 'p24') {
       setShowP24Payment(true);
+      return;
+    }
+
+    if (paymentMethod === 'paypal') {
+      setShowPayPalPayment(true);
       return;
     }
 
@@ -93,6 +100,17 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
 
   const handleP24Cancel = () => {
     setShowP24Payment(false);
+  };
+
+  const handlePayPalSuccess = (orderData: { orderId: string; captureId?: string; amount: string; currency: string; payer?: { email_address?: string; name?: { given_name?: string; surname?: string } }; status: string }) => {
+    const orderNum = 'MV' + orderData.orderId.split('_')[1] || Math.random().toString(36).substr(2, 9).toUpperCase();
+    setOrderNumber(orderNum);
+    setOrderComplete(true);
+    setShowPayPalPayment(false);
+  };
+
+  const handlePayPalCancel = () => {
+    setShowPayPalPayment(false);
   };
 
   if (orderComplete) {
@@ -261,7 +279,7 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
         {/* Payment Method Selection */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-4">Payment Method</h3>
-          <div className="grid grid-cols-3 gap-3 mb-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
             <button
               type="button"
               onClick={() => setPaymentMethod('card')}
@@ -311,6 +329,25 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
                 </div>
               </div>
               <span className="text-white font-medium text-sm">Przelewy24</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setPaymentMethod('paypal')}
+              className={`p-4 rounded-lg border-2 transition-all duration-300 ${
+                paymentMethod === 'paypal'
+                  ? 'border-blue-500 bg-blue-500/20'
+                  : 'border-gray-600 bg-white/5 hover:bg-white/10'
+              }`}
+            >
+              <div className="flex items-center justify-center mb-2">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h8.418c2.508 0 4.514.893 5.835 2.607 1.146 1.486 1.315 3.49.53 6.337-.906 3.287-2.914 5.04-6.09 5.04H12.15a.56.56 0 0 0-.544.444l-.866 5.235c-.013.078-.1.12-.18.12-.013 0-.027 0-.041-.003H7.076z"/>
+                  </svg>
+                </div>
+              </div>
+              <span className="text-white font-medium text-sm">PayPal</span>
             </button>
           </div>
         </div>
@@ -412,6 +449,43 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
           </div>
         )}
 
+        {/* PayPal Information */}
+        {paymentMethod === 'paypal' && (
+          <div className="glass-morphism p-4 rounded-lg">
+            <div className="flex items-center mb-3">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded flex items-center justify-center mr-3">
+                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h8.418c2.508 0 4.514.893 5.835 2.607 1.146 1.486 1.315 3.49.53 6.337-.906 3.287-2.914 5.04-6.09 5.04H12.15a.56.56 0 0 0-.544.444l-.866 5.235c-.013.078-.1.12-.18.12-.013 0-.027 0-.041-.003H7.076z"/>
+                </svg>
+              </div>
+              <h4 className="text-white font-semibold">PayPal Payment</h4>
+            </div>
+            <p className="text-gray-300 text-sm mb-3">
+              Pay securely with PayPal. You can use your PayPal balance, bank account, or credit/debit card.
+            </p>
+            <div className="space-y-2">
+              <div className="flex items-center text-green-400 text-sm">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Buyer Protection included
+              </div>
+              <div className="flex items-center text-green-400 text-sm">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Global payment solution
+              </div>
+              <div className="flex items-center text-blue-400 text-sm">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                Demo Mode - No real charges
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Order Summary */}
         <div className="glass-morphism p-4 rounded-lg">
           <h3 className="text-lg font-semibold text-white mb-3">Order Summary</h3>
@@ -443,10 +517,12 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
               ? 'bg-gradient-to-r from-red-500 to-pink-600 text-white hover:from-red-400 hover:to-pink-500'
               : paymentMethod === 'p24'
               ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-400 hover:to-red-500'
+              : paymentMethod === 'paypal'
+              ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-400 hover:to-blue-500'
               : 'bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-400 hover:to-emerald-500'
           }`}
         >
-          {paymentMethod === 'blik' ? 'Pay with BLIK' : paymentMethod === 'p24' ? 'Pay with Przelewy24' : 'Pay with Card'} - ${totalPrice.toFixed(2)}
+          {paymentMethod === 'blik' ? 'Pay with BLIK' : paymentMethod === 'p24' ? 'Pay with Przelewy24' : paymentMethod === 'paypal' ? 'Pay with PayPal' : 'Pay with Card'} - ${totalPrice.toFixed(2)}
         </motion.button>
 
         {/* Security Notice */}
@@ -475,6 +551,17 @@ export default function CheckoutForm({ items, totalPrice, onBack, onClose }: Che
           description={`MetaVerse Hub Order - ${items.map(item => item.name).join(', ')}`}
           onSuccess={handleP24Success}
           onCancel={handleP24Cancel}
+        />
+      )}
+
+      {/* PayPal Payment Modal */}
+      {showPayPalPayment && (
+        <PayPalPayment
+          amount={totalPrice}
+          currency="USD"
+          description={`MetaVerse Hub Order - ${items.map(item => item.name).join(', ')}`}
+          onSuccess={handlePayPalSuccess}
+          onCancel={handlePayPalCancel}
         />
       )}
     </form>

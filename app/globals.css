@@ -121,6 +121,10 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.glass-morphism:hover {
+  backdrop-filter: blur(10px);
+}
+
 .neon-border {
   border: 2px solid transparent;
   background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff) border-box;

@@ -18,21 +18,20 @@ export default function FeatureCard({ title, description, icon, delay = 0, gradi
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
       whileHover={{ 
-        scale: 1.05,
-        rotateY: 5,
-        boxShadow: "0 20px 40px rgba(0, 255, 255, 0.2)"
+        scale: 1.02,
+        y: -5
       }}
-      className="glass-morphism p-6 rounded-xl hover:bg-white/15 transition-all duration-300 group"
+      className="glass-morphism p-6 rounded-xl hover:bg-white/15 transition-all duration-300 group h-full flex flex-col"
     >
-      <div className={`w-16 h-16 bg-gradient-to-r ${gradient} rounded-lg flex items-center justify-center mb-4 group-hover:animate-float`}>
+      <div className={`w-16 h-16 bg-gradient-to-r ${gradient} rounded-lg flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300`}>
         {icon}
       </div>
       
-      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">
+      <h3 className="text-xl font-bold text-white mb-3 text-center group-hover:text-cyan-300 transition-colors">
         {title}
       </h3>
       
-      <p className="text-gray-300 leading-relaxed group-hover:text-white transition-colors">
+      <p className="text-gray-300 leading-relaxed text-center flex-grow group-hover:text-white transition-colors">
         {description}
       </p>
       

@@ -26,7 +26,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
             <FeatureCard
               title="Virtual Reality"
               description="Immerse yourself in photorealistic 3D environments with haptic feedback and spatial audio"
@@ -366,9 +366,9 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex items-center gap-4 mb-6">
-                <span className="text-3xl font-bold text-cyan-400">$29.99</span>
+                <span className="text-3xl font-bold text-cyan-400">$0.99</span>
                 <span className="text-xl text-gray-400 line-through">$39.99</span>
-                <span className="bg-red-500 text-white px-2 py-1 rounded-full text-sm font-bold">25% OFF</span>
+                <span className="bg-red-500 text-white px-2 py-1 rounded-full text-sm font-bold">99% OFF</span>
               </div>
               <motion.a
                 href="/shop"

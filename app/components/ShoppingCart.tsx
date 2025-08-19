@@ -33,7 +33,7 @@ export default function ShoppingCart({
 }: ShoppingCartProps) {
   const [showCheckout, setShowCheckout] = useState(false);
 
-  const shipping = totalPrice > 25 ? 0 : 5.99;
+  const shipping = totalPrice > 25 ? 0 : 0.99;
   const tax = totalPrice * 0.08; // 8% tax
   const finalTotal = totalPrice + shipping + tax;
 

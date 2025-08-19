@@ -36,7 +36,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# ✅ BEZPIECZEŃSTWO - nigdy nie commituj kluczy API
-.env.local
-.env.production
-.env.development
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db

@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
-import { PAYPAL_CONFIG, createPayPalOrder, capturePayPalPayment } from '../lib/paypal';
+import { PAYPAL_CONFIG } from '../lib/paypal';
 
 interface PayPalPaymentProps {
   amount: number;
@@ -12,6 +12,7 @@ interface PayPalPaymentProps {
   onCancel: () => void;
   onError?: (error: Error | unknown) => void;
 }
+
 
 export default function PayPalPayment({ 
   amount, 
@@ -58,6 +59,7 @@ export default function PayPalPayment({
     isDemoKey: PAYPAL_CONFIG.clientId === 'demo_paypal_client_id'
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const createOrder = async (data: any, actions: any) => {
     console.log('🔥 REAL: Creating PayPal order with SDK...');
     
@@ -76,6 +78,7 @@ export default function PayPalPayment({
     });
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onApprove = async (data: { orderID: string }, actions: any) => {
     console.log('🔥 REAL: PayPal payment approved:', data.orderID);
     
@@ -95,7 +98,17 @@ export default function PayPalPayment({
       }
 
       // Use PayPal SDK to capture the payment
-      const details = await actions.order.capture();
+      const details = await actions.order.capture() as {
+        purchase_units?: Array<{
+          payments?: {
+            captures?: Array<{ id: string }>;
+          };
+        }>;
+        payer?: {
+          email_address?: string;
+          name?: { given_name?: string; surname?: string };
+        };
+      };
       console.log('✅ REAL: PayPal payment captured via SDK:', details);
       
       // Check again if component is still mounted before updating state

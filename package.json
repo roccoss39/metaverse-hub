@@ -38,11 +38,18 @@
     "tailwindcss",
     "framer-motion"
   ],
-  "author": "Your Name",
+  "author": "MetaVerse Hub Team",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/yourusername/metaverse-hub.git"
   },
-  "homepage": "https://yourusername.github.io/metaverse-hub"
+  "homepage": "https://yourusername.github.io/metaverse-hub",
+  "bugs": {
+    "url": "https://github.com/yourusername/metaverse-hub/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
 }

@@ -1,4 +1,11 @@
-# 🌐 MetaVerse Hub - Professional E-commerce Store
+# 🌐 MetaVerse Hub
+
+**Professional e-commerce store with cyber/metaverse aesthetics and Polish payment integration**
+
+![Next.js](https://img.shields.io/badge/Next.js-15.1.7-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.4.3-0055FF?style=for-the-badge&logo=framer)
 
 A cutting-edge e-commerce platform built with Next.js, featuring cyber/metaverse aesthetics and multiple payment methods including Polish BLIK integration.
 
@@ -14,6 +21,7 @@ A cutting-edge e-commerce platform built with Next.js, featuring cyber/metaverse
 - **Credit Card** - Traditional card payments (demo)
 - **BLIK** - Polish mobile payment simulation
 - **Przelewy24** - Full P24 integration simulation
+- **PayPal** - International payment solution (sandbox)
 
 ### 🎨 **Design & UX**
 - Cyber/Metaverse themed design
@@ -57,11 +65,14 @@ http://localhost:3000
 
 ### Test the Store
 - 🛒 Browse products at `/shop`
-- 👕 Add MetaVerse Hub T-Shirt to cart
-- 💳 Test 3 payment methods:
+- 👕 Add MetaVerse Hub T-Shirt to cart ($24.99)
+- 💳 Test 4 payment methods:
   - Credit Card (demo)
   - BLIK (enter any 6 digits)
   - Przelewy24 (full simulation)
+  - PayPal (sandbox environment)
+- 🤖 Explore AI Agents at `/agents`
+- ℹ️ Learn more at `/about`
 
 ⚠️ **All payments are in DEMO MODE** - no real money processed!
 
